@@ -32,7 +32,7 @@ release:
   stage: Deploy
   image: morkid/ssh-client
   script:
-    - echo "$SSH_KEY" > ~/.ssh/id_rsa
+    - echo "$SSH_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
     - ssh -p $SSH_PORT $SSH_USER@$SSH_SERVER "mkdir -p /opt/app"
     - scp -P $SSH_PORT -r build/* $SSH_USER@$SSH_SERVER:/opt/app/
   only:
